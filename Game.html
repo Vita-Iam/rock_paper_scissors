@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rock Paper Scissors</title>
+</head>
+<body>
+    <script>
+        function getComputerChoice () {
+            let num = Math.floor(Math.random() * 3);
+            if (num === 0) {
+                console.log("Computer's choice: rock");
+                return "rock";
+            } else if (num === 1) {
+                console.log("Computer's choice: paper");
+                return "paper";
+            }
+            console.log("Computer's choice: scissors");
+            return "scissors";
+        }
+
+        function getHumanChoice () {
+            let choice = prompt("What's your choice?").toLowerCase();
+            if (choice === "rock" || choice === "paper" || choice === "scissors") {
+                console.log("Player's choice: ", choice);
+                return choice;
+            }
+            console.log("Something went wrong");
+            return null;
+        }
+
+        function playRound (humanChoice, computerChoice) {
+            if (humanChoice === computerChoice) {
+                console.log("it is a draw");
+                return;
+            }
+            if (humanChoice === "rock") {
+                if (computerChoice === "paper") {
+                    console.log("You lost! Paper beats rock");
+                    ++computerScore;
+                } else if (computerChoice === "scissors") {
+                    console.log("You won!");
+                    ++humanScore;
+                }
+            } else if (humanChoice === "paper") {
+                if (computerChoice == "rock") {
+                    console.log("You won!");
+                    ++humanScore;
+                } else if (computerChoice == "scissors") {
+                    console.log("You lost!");
+                    ++computerScore;
+                }
+            } else if (humanChoice === "scissors") {
+                if (computerChoice == "rock") {
+                    console.log("You lost!");
+                    ++computerScore;
+                } else if (computerChoice === "paper") {
+                    console.log("You won!");
+                    ++humanScore;
+                }
+            }
+        }
+
+        const humanSelection = getHumanChoice();
+        const computerSelection = getComputerChoice();
+
+        playRound(humanSelection, computerSelection);
+    </script>
+</body>
+</html>
